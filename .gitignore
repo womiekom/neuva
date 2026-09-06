@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Production build
+dist/
+dist-ssr/
+
+# Environment and local files
+.env
+.env.local
+.env.*.local
+
+# Editor directories and logs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.DS_Store
+Thumbs.db
+
+# Processing tools, scratch scripts, intermediate scraping & temporary assets
+*.py
+*.pyc
+__pycache__/
+*.html
+!index.html
+*.txt
+crop_full_left.png
+orig_arm.png
+trans_arm.png
+drive_assets/
+extracted_images/
+temp_*/
+
+*.ps1
+commit_steps.ps1
