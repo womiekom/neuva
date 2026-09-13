@@ -33,7 +33,7 @@ export default function NightfallFooter({ onSelectPage }) {
           <div className="md:col-span-6 space-y-3">
             <div className="flex items-center gap-3">
               <img
-                src="/assets/logo/neuva-logo.png"
+                src="/assets/logo/neuva-logo.webp"
                 alt="NEUVA Logo"
                 className="h-10 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]"
               />

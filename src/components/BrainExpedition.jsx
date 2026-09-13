@@ -72,13 +72,16 @@ export default function BrainExpedition() {
                     preload="metadata"
                     className="w-full aspect-video object-cover"
                   >
+                    {chapter.videoAmbientWebm && (
+                      <source src={chapter.videoAmbientWebm} type="video/webm" />
+                    )}
                     <source src={chapter.videoAmbient} type="video/mp4" />
                   </video>
                 </div>
               ) : (
                 <div className="rounded-2xl overflow-hidden border border-white/15 shadow-2xl">
                   <img
-                    src="/assets/chapters/chapter-hippocampus.png"
+                    src="/assets/chapters/chapter-hippocampus.webp"
                     alt="Hippocampus Realm Capture"
                     className="w-full aspect-video object-cover"
                   />

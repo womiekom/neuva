@@ -10,6 +10,15 @@ const QUOTES = [
   "“True healing comes from accepting every fragmented part of ourselves.”"
 ];
 
+const BASE_PATH = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+
+const SPRITES = {
+  idleFront: `${BASE_PATH}/assets/sprites/kael-idle-front.webp`,
+  idleRight: `${BASE_PATH}/assets/sprites/kael-idle-right.webp`,
+  walkR1: `${BASE_PATH}/assets/sprites/kael-walk-r1.webp`,
+  walkR2: `${BASE_PATH}/assets/sprites/kael-walk-r2.webp`,
+};
+
 export default function KaelWalker() {
   const [posX, setPosX] = useState(20); // 0% to 85%
   const [direction, setDirection] = useState('right'); // 'right' | 'left'
@@ -19,8 +28,22 @@ export default function KaelWalker() {
   const [currentQuote, setCurrentQuote] = useState(QUOTES[0]);
   const [walkSpeed, setWalkSpeed] = useState(0.25); // percentage step per tick
   const trackRef = useRef(null);
+  const dirRef = useRef('right');
 
-  // Animation cycle for sprite frames (160ms per frame when walking)
+  // Preload all sprites on initial mount
+  useEffect(() => {
+    Object.values(SPRITES).forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  // Sync ref with direction
+  useEffect(() => {
+    dirRef.current = direction;
+  }, [direction]);
+
+  // Animation cycle for sprite frames (180ms per frame when walking)
   useEffect(() => {
     if (!isWalking || isInteracting) return;
     const frameInterval = setInterval(() => {
@@ -35,12 +58,15 @@ export default function KaelWalker() {
 
     const moveInterval = setInterval(() => {
       setPosX((prevX) => {
-        let newX = prevX + (direction === 'right' ? walkSpeed : -walkSpeed);
+        const currentDir = dirRef.current;
+        let newX = prevX + (currentDir === 'right' ? walkSpeed : -walkSpeed);
 
         if (newX >= 84) {
+          dirRef.current = 'left';
           setDirection('left');
           return 84;
         } else if (newX <= 4) {
+          dirRef.current = 'right';
           setDirection('right');
           return 4;
         }
@@ -49,21 +75,17 @@ export default function KaelWalker() {
     }, 40);
 
     return () => clearInterval(moveInterval);
-  }, [isWalking, direction, isInteracting, walkSpeed]);
+  }, [isWalking, isInteracting, walkSpeed]);
 
   // Sprite image determination
   const getSpriteSrc = () => {
     if (isInteracting) {
-      return '/assets/sprites/kael-idle-front.png';
+      return SPRITES.idleFront;
     }
     if (!isWalking) {
-      return direction === 'right'
-        ? '/assets/sprites/kael-idle-right.png'
-        : '/assets/sprites/kael-idle-left.png';
+      return SPRITES.idleRight;
     }
-    return direction === 'right'
-      ? `/assets/sprites/kael-walk-r${walkFrame}.png`
-      : `/assets/sprites/kael-walk-l${walkFrame}.png`;
+    return walkFrame === 1 ? SPRITES.walkR1 : SPRITES.walkR2;
   };
 
   // Click on pathway to walk Kael to that position
@@ -176,16 +198,46 @@ export default function KaelWalker() {
             </div>
           )}
 
-          {/* Kael Pixel Sprite */}
+          {/* Kael Pixel Sprite (Zero-Latency Pre-Mounted DOM Stack) */}
           <div className="relative">
-            <img
-              src={getSpriteSrc()}
-              alt="Kael walking sprite"
-              className="w-14 h-14 sm:w-16 sm:h-16 pixelated filter drop-shadow-[0_4px_12px_rgba(217,70,239,0.35)] transform transition-transform group-hover/kael:scale-110"
-              style={{
-                imageRendering: 'pixelated',
-              }}
-            />
+            <div
+              className={`relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 aspect-square filter drop-shadow-[0_4px_12px_rgba(217,70,239,0.35)] transition-transform group-hover/kael:scale-110 ${
+                !isInteracting && direction === 'left' ? '-scale-x-100' : 'scale-x-100'
+              }`}
+            >
+              <img
+                src={SPRITES.idleFront}
+                alt="Kael Idle Front"
+                className={`absolute inset-0 w-full h-full object-contain pixelated select-none pointer-events-none transition-opacity duration-0 ${
+                  isInteracting ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{ imageRendering: 'pixelated' }}
+              />
+              <img
+                src={SPRITES.idleRight}
+                alt="Kael Idle Right"
+                className={`absolute inset-0 w-full h-full object-contain pixelated select-none pointer-events-none transition-opacity duration-0 ${
+                  !isInteracting && !isWalking ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{ imageRendering: 'pixelated' }}
+              />
+              <img
+                src={SPRITES.walkR1}
+                alt="Kael Walk 1"
+                className={`absolute inset-0 w-full h-full object-contain pixelated select-none pointer-events-none transition-opacity duration-0 ${
+                  !isInteracting && isWalking && walkFrame === 1 ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{ imageRendering: 'pixelated' }}
+              />
+              <img
+                src={SPRITES.walkR2}
+                alt="Kael Walk 2"
+                className={`absolute inset-0 w-full h-full object-contain pixelated select-none pointer-events-none transition-opacity duration-0 ${
+                  !isInteracting && isWalking && walkFrame === 2 ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{ imageRendering: 'pixelated' }}
+              />
+            </div>
             {/* Ground shadow */}
             <div className="w-10 h-2 bg-black/50 rounded-full blur-[2px] mx-auto -mt-1" />
           </div>

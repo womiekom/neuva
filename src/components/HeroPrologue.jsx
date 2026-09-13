@@ -30,7 +30,7 @@ export default function HeroPrologue({ onBackToOverview }) {
           {/* Official Nemuri Logo - Enlarged with reduced top gap */}
           <div className="relative mb-6">
             <img
-              src="/assets/logo/nemuri-logo.png"
+              src="/assets/logo/nemuri-logo.webp"
               alt="NEMURI Official Brand Logo"
               className="h-28 sm:h-36 md:h-44 object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)]"
             />
@@ -66,7 +66,7 @@ export default function HeroPrologue({ onBackToOverview }) {
             <div className="w-full lg:w-1/3 flex items-center justify-center relative order-1 lg:order-2 group">
               <div className="absolute inset-0 bg-nocturne-glow/15 blur-3xl rounded-full transform group-hover:scale-110 transition-transform duration-700 pointer-events-none" />
               <img
-                src="/assets/sprites/kael-splash-transparent.png"
+                src="/assets/sprites/kael-splash-transparent.webp"
                 alt="Kael Official Splash Art"
                 className="w-72 sm:w-80 md:w-96 max-h-[480px] object-contain relative z-20 filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] transform group-hover:scale-105 transition-transform duration-500"
               />

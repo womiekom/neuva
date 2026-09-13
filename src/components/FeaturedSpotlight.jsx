@@ -44,7 +44,7 @@ export default function FeaturedSpotlight({ onNavigateToProjects }) {
                   {/* Nemuri Logo */}
                   <div className="py-0.5">
                     <img
-                      src="/assets/logo/nemuri-logo.png"
+                      src="/assets/logo/nemuri-logo.webp"
                       alt="NEMURI"
                       className="h-14 sm:h-16 md:h-20 w-auto object-contain filter drop-shadow-[0_8px_20px_rgba(0,0,0,0.85)]"
                     />

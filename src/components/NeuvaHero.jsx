@@ -12,8 +12,9 @@ export default function NeuvaHero() {
           muted
           playsInline
           preload="auto"
-          className="w-full h-full object-cover filter brightness-[0.68] contrast-105"
+          className="w-full h-full object-cover object-[75%_center] md:object-center filter brightness-[0.68] contrast-105"
         >
+          <source src="/assets/videos/main_screen_menu.webm" type="video/webm" />
           <source src="/assets/videos/main_screen_menu.mp4" type="video/mp4" />
           <source src="/assets/videos/main_screen_menu.mov" type="video/quicktime" />
         </video>
@@ -32,7 +33,7 @@ export default function NeuvaHero() {
         <div className="relative mb-5 sm:mb-7 group">
           <div className="absolute -inset-6 bg-white/20 blur-2xl rounded-full opacity-60 group-hover:opacity-100 transition duration-700 pointer-events-none" />
           <img
-            src="/assets/logo/neuva-logo.png"
+            src="/assets/logo/neuva-logo.webp"
             alt="NEUVA Studio Brandmark"
             className="h-20 sm:h-28 md:h-36 w-auto object-contain relative filter drop-shadow-[0_0_25px_rgba(255,255,255,0.85)] drop-shadow-[0_0_10px_rgba(255,255,255,1)] group-hover:scale-105 transition-all duration-500"
           />

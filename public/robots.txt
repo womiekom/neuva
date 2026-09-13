@@ -1,0 +1,6 @@
+# robots.txt for NEUVA Studio (NEMURI)
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://neuva.studio/sitemap.xml

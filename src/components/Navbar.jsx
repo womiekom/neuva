@@ -36,7 +36,7 @@ export default function Navbar() {
         <a href="#overview" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 rounded-xl overflow-hidden p-0.5 bg-gradient-to-br from-dream-magenta via-purple-600 to-indigo-800 shadow-lg shadow-purple-900/30">
             <img
-              src="/assets/logo/neuva-logo.png"
+              src="/assets/logo/neuva-logo.webp"
               alt="NEUVA Logo"
               className="w-full h-full object-contain rounded-lg bg-nocturne-950 p-1 group-hover:scale-105 transition-transform duration-300"
             />

@@ -35,6 +35,7 @@ __pycache__/
 *.html
 !index.html
 *.txt
+!public/robots.txt
 crop_full_left.png
 orig_arm.png
 trans_arm.png

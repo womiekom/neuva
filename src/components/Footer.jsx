@@ -19,7 +19,7 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl overflow-hidden p-0.5 bg-gradient-to-br from-dream-magenta to-indigo-800">
                 <img
-                  src="/assets/logo/neuva-logo.png"
+                  src="/assets/logo/neuva-logo.webp"
                   alt="NEUVA Logo"
                   className="w-full h-full object-contain rounded-lg bg-nocturne-950 p-1"
                 />

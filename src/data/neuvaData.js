@@ -39,8 +39,8 @@ export const studioProjects = [
     title: "NEMURI",
     tagline: "Wander Through The Mind That Cannot Rest",
     description: "A 3D low-poly psychological exploration game following Kael into Nocturne, a surreal dreamscape mapped onto human brain anatomy, guided by four Energeons to confront chronic insomnia.",
-    bannerImage: "/assets/projects/nemuri_banner.png",
-    logoImage: "/assets/logo/nemuri-logo.png",
+    bannerImage: "/assets/projects/nemuri_banner.webp",
+    logoImage: "/assets/logo/nemuri-logo.webp",
     status: "Flagship Title • 1st Place Winner",
     awards: "1st Place Winner — Krafton Better Ground 2026",
     tags: ["Unity 6", "Blender 3D", "Psychological Adventure", "Single-Player", "PC Windows"],
@@ -73,7 +73,7 @@ export const characters3D = [
     id: "kael",
     name: "Kael",
     title: "The Insomniac Traveler",
-    model3d: "/assets/3d/Kael3d.png",
+    model3d: "/assets/3d/Kael3d.webp",
     nature: "The Conscious Self",
     psyche: "Chronic Exhaustion & Vulnerability",
     summary: "The protagonist trapped between waking fatigue and dream instability. Desperate for rest, he descends into Nocturne to confront the cognitive imbalances haunting his sleep.",
@@ -85,7 +85,7 @@ export const characters3D = [
     id: "rona",
     name: "Rona",
     title: "The Pulse",
-    model3d: "/assets/3d/Rona3d.png",
+    model3d: "/assets/3d/Rona3d.webp",
     nature: "Energeon Companion",
     psyche: "Ambition & Stress",
     summary: "A concentrated embodiment of Kael's restless conscious drive. In Nocturne, Rona's kinetic energy activates dormant mechanisms and summons physical objects from memory.",
@@ -97,7 +97,7 @@ export const characters3D = [
     id: "keiko",
     name: "Keiko",
     title: "Soul Sight",
-    model3d: "/assets/3d/Keiko3d.png",
+    model3d: "/assets/3d/Keiko3d.webp",
     nature: "Energeon Companion",
     psyche: "Energetic & Anxiety",
     summary: "Born from high alert and hypervigilant anxiety. Keiko has the unique gift of perception, unmasking deceptive terrain and revealing hidden tracks invisible to the naked eye.",
@@ -109,7 +109,7 @@ export const characters3D = [
     id: "feanor",
     name: "Feanor",
     title: "The Arcane",
-    model3d: "/assets/3d/Feanor3d.png",
+    model3d: "/assets/3d/Feanor3d.webp",
     nature: "Energeon Companion",
     psyche: "Logical, Arrogant & Angry",
     summary: "A manifestation of sharp analytical intellect intertwined with defensive pride. Feanor dismantles intricate computational networks, logical puzzles, and locked mental barriers.",
@@ -121,7 +121,7 @@ export const characters3D = [
     id: "murial",
     name: "Murial",
     title: "The Reform",
-    model3d: "/assets/3d/Murial3d.png",
+    model3d: "/assets/3d/Murial3d.webp",
     nature: "Energeon Companion",
     psyche: "Chill & Lifeless",
     summary: "Echoing states of emotional depletion and stoic detachment. Murial channels deep quietude to reconstruct shattered monuments, fallen pillars, and fractured bridges.",
@@ -144,6 +144,7 @@ export const brainChapters = [
       "Encounter Ferry: Meet the enigmatic rabbit guardian carrying memories of Kael"
     ],
     videoAmbient: "/assets/videos/pineal_gland_video.mp4",
+    videoAmbientWebm: "/assets/videos/pineal_gland_video.webm",
     audioTone: "Eerie forest soundscape with authentic rustling foliage, cool wind, and gentle musical chime motifs."
   },
   {
@@ -158,6 +159,7 @@ export const brainChapters = [
       "Memory Synthesis: Uncover the foundational moments driving Kael's sleeplessness"
     ],
     videoAmbient: "/assets/videos/hippocampus_video.mp4",
+    videoAmbientWebm: "/assets/videos/hippocampus_video.webm",
     audioTone: "Soft dark-fantasy lullaby with nostalgic, faded piano chords evoking bittersweet, distant recollections."
   },
   {
@@ -172,6 +174,7 @@ export const brainChapters = [
       "Nocturne Heart Restored: Achieve emotional balance and unlock peaceful rest"
     ],
     videoAmbient: "/assets/videos/amygdala_video.mp4",
+    videoAmbientWebm: "/assets/videos/amygdala_video.webm",
     audioTone: "Tense, urgent cello compositions that transition into an uplifting, peaceful melody upon victory."
   }
 ];
@@ -194,28 +197,28 @@ export const studioDevelopers = [
     name: "Raiyan Mufid",
     role: "Engine Programmer",
     specialty: "Gameplay Architecture & Systems Foundation",
-    photo: "/assets/team/raiyan_mufid.png",
+    photo: "/assets/team/raiyan_mufid.webp",
     bio: "Developed the core gameplay architecture in Unity 6, establishing the underlying mechanic systems, character controllers, and technical foundations."
   },
   {
     name: "M. Faiq Misyal",
     role: "Engine Programmer",
     specialty: "In-Engine Interactions & Collision Logic",
-    photo: "/assets/team/faiq_misyal.png",
+    photo: "/assets/team/faiq_misyal.webp",
     bio: "Handled core in-engine implementation for interactive environments, trigger logic, collision physics, and real-time gameplay behavior."
   },
   {
     name: "Raihana Lavania Mansur",
     role: "Main Designer",
     specialty: "3D Asset Modeling, Map Schemes & UI/UX",
-    photo: "/assets/team/raihana_lavania.png",
+    photo: "/assets/team/raihana_lavania.webp",
     bio: "Crafted the visual identity of Nocturne, modeling all 3D characters and biomes in Blender, illustrating concept sheets, and directing UI/UX aesthetics."
   },
   {
     name: "Keisha Rima Sofia",
     role: "Concept Designer",
     specialty: "Storyline, Dialogue & Narrative Mechanics",
-    photo: "/assets/team/keisha_rima.png",
+    photo: "/assets/team/keisha_rima.webp",
     bio: "Authored the narrative world of NEMURI, directing Kael's psychological arc, character dialogue, emotional pacing, and thematic game design."
   }
 ];

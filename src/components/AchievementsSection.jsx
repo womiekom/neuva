@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import { achievementsData } from '../data/neuvaData';
 
 const achievementPhotos = [
   {
     id: 'school',
-    src: '/assets/achievements/krafton_school_trophy.jpg',
+    src: '/assets/achievements/krafton_school_trophy.webp',
     alt: 'SMAN 81 Jakarta School Trophy Presentation',
     title: 'SMAN 81 Jakarta',
     subtitle: 'National Championship Trophy, Gold Medals & Certificates',
@@ -13,7 +13,7 @@ const achievementPhotos = [
   },
   {
     id: 'studio',
-    src: '/assets/achievements/krafton_studio_trophy.png',
+    src: '/assets/achievements/krafton_studio_trophy.webp',
     alt: 'NEUVA Team Formal Championship Photo',
     title: 'NEUVA Collective',
     subtitle: 'Formal Championship Portrait in Traditional Indonesian Batik',
@@ -21,7 +21,7 @@ const achievementPhotos = [
   },
   {
     id: 'ceremony',
-    src: '/assets/achievements/krafton_winner_announcement.png',
+    src: '/assets/achievements/krafton_winner_announcement.webp',
     alt: 'Krafton Better Ground Challenges Live Ceremony Announcement',
     title: 'Krafton Better Ground 2026',
     subtitle: 'Official 1st Place National Winner Live Stream Announcement',
@@ -39,58 +39,7 @@ const loopPhotos = [
 
 export default function AchievementsSection() {
   const feat = achievementsData[0];
-  const [scrollOffset, setScrollOffset] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const [activeLightboxPhoto, setActiveLightboxPhoto] = useState(null);
-
-  const containerRef = useRef(null);
-  const singleLoopWidthRef = useRef(0);
-  const animFrameId = useRef(null);
-
-  // Measure width of one cycle (3 images + gaps)
-  useEffect(() => {
-    const updateWidth = () => {
-      if (containerRef.current) {
-        // Average cycle length is 1/4 of total scrollWidth
-        singleLoopWidthRef.current = containerRef.current.scrollWidth / 4;
-      }
-    };
-    updateWidth();
-    window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
-  }, []);
-
-  // Continuous smooth marquee glide
-  useEffect(() => {
-    if (isHovered || activeLightboxPhoto) return;
-
-    let lastTime = performance.now();
-
-    const step = (now) => {
-      const delta = now - lastTime;
-      lastTime = now;
-
-      // ~45px per second smooth glide
-      const move = (delta / 1000) * 45;
-
-      setScrollOffset((prev) => {
-        const next = prev + move;
-        const loopWidth = singleLoopWidthRef.current;
-        if (loopWidth > 0 && next >= loopWidth) {
-          return next - loopWidth;
-        }
-        return next;
-      });
-
-      animFrameId.current = requestAnimationFrame(step);
-    };
-
-    animFrameId.current = requestAnimationFrame(step);
-
-    return () => {
-      if (animFrameId.current) cancelAnimationFrame(animFrameId.current);
-    };
-  }, [isHovered, activeLightboxPhoto]);
 
   return (
     <section id="achievement" className="py-24 relative overflow-hidden">
@@ -139,8 +88,6 @@ export default function AchievementsSection() {
             {/* ========================================================================= */}
             <div
               className="relative w-full overflow-hidden rounded-2xl mt-8 pt-4 select-none group"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
             >
               {/* 4-Way Smooth Black Edge Fades (Left, Right, Top, Bottom) */}
               <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-20 pointer-events-none bg-gradient-to-r from-obsidian-900 via-obsidian-900/80 to-transparent" />
@@ -148,11 +95,11 @@ export default function AchievementsSection() {
               <div className="absolute top-0 left-0 right-0 h-10 sm:h-16 z-20 pointer-events-none bg-gradient-to-b from-obsidian-900 via-obsidian-900/70 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 h-10 sm:h-16 z-20 pointer-events-none bg-gradient-to-t from-obsidian-900 via-obsidian-900/70 to-transparent" />
 
-              {/* Connected Images Track (All images exact same height, connected side-by-side, no border line, no gapfill) */}
+              {/* Connected Images Track (Seamless Pure CSS Hardware-Accelerated Infinite Marquee) */}
               <div
-                ref={containerRef}
-                className="flex items-center gap-4 sm:gap-6 will-change-transform py-2"
-                style={{ transform: `translateX(-${scrollOffset}px)` }}
+                className={`animate-marquee-smooth items-center gap-4 sm:gap-6 py-2 ${
+                  activeLightboxPhoto ? '[animation-play-state:paused]' : ''
+                }`}
               >
                 {loopPhotos.map((photo, idx) => (
                   <div

@@ -55,39 +55,39 @@ export default function ProjectsView({ onBackToHome }) {
 
             {/* Featured Project Banner with DISCOVER MORE */}
             <div className="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl mb-16 group bg-obsidian-950">
-              {/* Background Image: The user's second image with Kael, Clock & Moons */}
-              <div className="relative aspect-[16/8] sm:aspect-[21/9] md:aspect-[2.4/1] w-full overflow-hidden">
+              {/* Background Image: Nemuri Nocturne Banner */}
+              <div className="relative min-h-[460px] sm:min-h-[400px] md:min-h-0 md:aspect-[2.3/1] w-full overflow-hidden flex items-center justify-center">
                 <img
-                  src="/assets/projects/nemuri_banner.png"
+                  src="/assets/projects/nemuri_banner.webp"
                   alt="NEMURI — Wander Through The Mind That Cannot Rest"
-                  className="w-full h-full object-cover object-center filter brightness-95 group-hover:scale-105 transition-transform duration-1000 ease-out"
+                  className="absolute inset-0 w-full h-full object-cover object-center filter brightness-90 group-hover:scale-105 transition-transform duration-1000 ease-out"
                 />
 
                 {/* Subtle Gradient Overlays for High Readability & Cinematic Framing */}
-                <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/50 to-obsidian-950/30" />
                 <div className="absolute inset-0 bg-gradient-to-r from-obsidian-950/80 via-transparent to-obsidian-950/60" />
-                <div className="absolute inset-0 bg-black/25 backdrop-brightness-95" />
+                <div className="absolute inset-0 bg-black/35 backdrop-brightness-95" />
 
                 {/* Banner Content Container (Center / Hero styled) */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 sm:p-10 z-10">
-                  {/* Game Title: Significantly Larger Nemuri Brand Logo */}
-                  <div className="flex flex-col items-center mb-4">
+                <div className="relative z-10 flex flex-col items-center justify-center text-center p-6 sm:p-8 md:p-10 w-full">
+                  {/* Game Title: Proportionate Responsive Nemuri Brand Logo */}
+                  <div className="flex flex-col items-center mb-3 sm:mb-4">
                     <img
-                      src="/assets/logo/nemuri-logo.png"
+                      src="/assets/logo/nemuri-logo.webp"
                       alt="NEMURI"
-                      className="h-24 sm:h-32 md:h-40 lg:h-48 w-auto object-contain filter drop-shadow-[0_15px_35px_rgba(0,0,0,0.95)]"
+                      className="h-16 sm:h-24 md:h-32 lg:h-40 w-auto object-contain filter drop-shadow-[0_12px_30px_rgba(0,0,0,0.95)]"
                     />
                   </div>
 
                   {/* Subtitle / Logline */}
-                  <p className="font-sans text-xs sm:text-sm md:text-base text-slate-200 font-light max-w-xl mb-6 sm:mb-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] leading-relaxed px-4">
+                  <p className="font-sans text-xs sm:text-sm md:text-base text-slate-200 font-light max-w-xl mb-6 sm:mb-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] leading-relaxed px-2 sm:px-4">
                     A 3D low-poly psychological exploration game about chronic insomnia, fragmented memory, and the journey of self-acceptance.
                   </p>
 
                   {/* DISCOVER MORE Button */}
                   <button
                     onClick={handleDiscoverMore}
-                    className="inline-flex items-center gap-3 px-8 sm:px-10 py-3 sm:py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 text-white font-mono tracking-widest text-xs sm:text-sm font-semibold uppercase transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md group/btn shadow-xl"
+                    className="inline-flex items-center gap-2.5 sm:gap-3 px-6 sm:px-10 py-2.5 sm:py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 text-white font-mono tracking-widest text-xs sm:text-sm font-semibold uppercase transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md group/btn shadow-xl"
                   >
                     <span>DISCOVER MORE</span>
                     <ChevronDown

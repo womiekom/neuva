@@ -188,3 +188,24 @@ body {
 .neural-pulse-flow {
   animation: neuralSignalFlow 3s linear infinite;
 }
+
+/* Seamless infinite marquee animation */
+@keyframes marquee-glide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-smooth {
+  display: flex;
+  width: max-content;
+  animation: marquee-glide 42s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-smooth:hover {
+  animation-play-state: paused;
+}

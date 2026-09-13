@@ -27,7 +27,7 @@ export default function Hero() {
           <div className="relative mb-6 group">
             <div className="absolute -inset-4 bg-gradient-to-r from-dream-magenta/20 via-purple-600/20 to-dream-cyan/20 blur-xl opacity-60 group-hover:opacity-100 transition duration-700 rounded-full" />
             <img
-              src="/assets/logo/nemuri-logo.png"
+              src="/assets/logo/nemuri-logo.webp"
               alt="NEMURI — Wander Through The Mind That Cannot Rest"
               className="h-28 sm:h-36 md:h-44 object-contain relative filter drop-shadow-[0_10px_25px_rgba(217,70,239,0.35)] animate-float-slow"
             />

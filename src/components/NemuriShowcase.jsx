@@ -65,7 +65,7 @@ export default function NemuriShowcase() {
               {/* Kael Splash Art */}
               <div className="relative h-72 sm:h-80 w-full flex items-center justify-center my-4 overflow-hidden rounded-xl bg-purple-950/40">
                 <img
-                  src="/assets/sprites/kael-splash.png"
+                  src="/assets/sprites/kael-splash.webp"
                   alt="Kael Splash Art"
                   className="max-h-full object-contain filter drop-shadow-[0_10px_20px_rgba(192,132,252,0.4)] transform group-hover:scale-105 transition-transform duration-500"
                 />

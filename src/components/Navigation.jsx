@@ -73,7 +73,7 @@ export default function Navigation({ currentPage = 'neuva', onSelectPage }) {
           <div className="relative flex items-center justify-center">
             <div className="absolute inset-0 bg-white/20 blur-lg rounded-full scale-125 pointer-events-none group-hover:bg-white/40 transition-all duration-500" />
             <img
-              src="/assets/logo/neuva-logo.png"
+              src="/assets/logo/neuva-logo.webp"
               alt="NEUVA Logo"
               className="h-11 sm:h-13 w-auto object-contain relative z-10 filter drop-shadow-[0_0_12px_rgba(255,255,255,0.9)] drop-shadow-[0_0_4px_rgba(255,255,255,1)] group-hover:scale-105 transition-all duration-300"
             />

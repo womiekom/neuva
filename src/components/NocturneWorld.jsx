@@ -2,11 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { gameMeta } from '../data/neuvaData';
 
 const DRIVE_VIDEOS = [
-  "/assets/videos/mindlit_beginning.mov",
-  "/assets/videos/teleport_pineal.mov",
-  "/assets/videos/ch1_to_2.mp4",
-  "/assets/videos/ch3_ferry.mp4",
-  "/assets/videos/cutscene_ending.mp4"
+  { webm: "/assets/videos/mindlit_beginning.webm", mp4: "/assets/videos/mindlit_beginning.mov" },
+  { webm: "/assets/videos/teleport_pineal.webm", mp4: "/assets/videos/teleport_pineal.mov" },
+  { webm: "/assets/videos/ch1_to_2.webm", mp4: "/assets/videos/ch1_to_2.mp4" },
+  { webm: "/assets/videos/ch3_ferry.webm", mp4: "/assets/videos/ch3_ferry.mp4" },
+  { webm: "/assets/videos/cutscene_ending.webm", mp4: "/assets/videos/cutscene_ending.mp4" }
 ];
 
 export default function NocturneWorld() {
@@ -58,7 +58,7 @@ export default function NocturneWorld() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <video
           ref={videoRef}
-          key={DRIVE_VIDEOS[currentIdx]}
+          key={DRIVE_VIDEOS[currentIdx].webm}
           autoPlay
           muted
           playsInline
@@ -69,7 +69,8 @@ export default function NocturneWorld() {
           onError={handleError}
           className="w-full h-full object-cover filter brightness-95 opacity-35"
         >
-          <source src={DRIVE_VIDEOS[currentIdx]} />
+          <source src={DRIVE_VIDEOS[currentIdx].webm} type="video/webm" />
+          <source src={DRIVE_VIDEOS[currentIdx].mp4} />
         </video>
 
         {/* Soft dark readability layer */}

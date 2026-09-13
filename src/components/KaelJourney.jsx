@@ -10,18 +10,20 @@ const MONOLOGUES = [
 ];
 
 // Exact 4-step cycle: Walk1 -> Neutral -> Walk2 -> Neutral
-const RIGHT_CYCLE = [
-  "/assets/sprites/kael-walk-r1.png",
-  "/assets/sprites/kael-idle-right.png",
-  "/assets/sprites/kael-walk-r2.png",
-  "/assets/sprites/kael-idle-right.png"
-];
+const BASE_PATH = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
 
-const LEFT_CYCLE = [
-  "/assets/sprites/kael-walk-l1.png",
-  "/assets/sprites/kael-idle-left.png",
-  "/assets/sprites/kael-walk-l2.png",
-  "/assets/sprites/kael-idle-left.png"
+const SPRITES = {
+  idleFront: `${BASE_PATH}/assets/sprites/kael-idle-front.webp`,
+  idleRight: `${BASE_PATH}/assets/sprites/kael-idle-right.webp`,
+  walkR1: `${BASE_PATH}/assets/sprites/kael-walk-r1.webp`,
+  walkR2: `${BASE_PATH}/assets/sprites/kael-walk-r2.webp`,
+};
+
+const WALK_CYCLE = [
+  SPRITES.walkR1,
+  SPRITES.idleRight,
+  SPRITES.walkR2,
+  SPRITES.idleRight
 ];
 
 // =========================================================================
@@ -225,6 +227,20 @@ export default function KaelJourney() {
   const [quote, setQuote] = useState(MONOLOGUES[0]);
   const [ripples, setRipples] = useState([]);
   const containerRef = useRef(null);
+  const dirRef = useRef('right');
+
+  // Preload all sprites on initial mount to guarantee immediate 0-latency caching
+  useEffect(() => {
+    Object.values(SPRITES).forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  // Sync ref with direction
+  useEffect(() => {
+    dirRef.current = direction;
+  }, [direction]);
 
   // Cycle through 4-step animation sequence (160ms per frame)
   useEffect(() => {
@@ -235,34 +251,35 @@ export default function KaelJourney() {
     return () => clearInterval(interval);
   }, [isWalking, isTalking]);
 
-  // Movement translation interval
+  // Smooth continuous movement translation
   useEffect(() => {
     if (!isWalking || isTalking) return;
     const speed = 0.22;
     const moveInterval = setInterval(() => {
       setPosX((prev) => {
-        let next = prev + (direction === 'right' ? speed : -speed);
+        const currentDir = dirRef.current;
+        let next = prev + (currentDir === 'right' ? speed : -speed);
+
         if (next >= 88) {
+          dirRef.current = 'left';
           setDirection('left');
           return 88;
         } else if (next <= 6) {
+          dirRef.current = 'right';
           setDirection('right');
           return 6;
         }
         return next;
       });
     }, 35);
+
     return () => clearInterval(moveInterval);
-  }, [isWalking, direction, isTalking]);
+  }, [isWalking, isTalking]);
 
   const getSpriteImage = () => {
-    if (isTalking) return "/assets/sprites/kael-idle-front.png";
-    if (!isWalking) {
-      return direction === 'right'
-        ? "/assets/sprites/kael-idle-right.png"
-        : "/assets/sprites/kael-idle-left.png";
-    }
-    return direction === 'right' ? RIGHT_CYCLE[stepIndex] : LEFT_CYCLE[stepIndex];
+    if (isTalking) return SPRITES.idleFront;
+    if (!isWalking) return SPRITES.idleRight;
+    return WALK_CYCLE[stepIndex];
   };
 
   const handleTrackClick = (e) => {
@@ -439,15 +456,47 @@ export default function KaelJourney() {
             </div>
           )}
 
-          {/* Large Kael Sprite */}
-          <div className="relative">
+          {/* Large Kael Sprite (Zero-Latency Pre-Mounted DOM Stack) */}
+          <div
+            className={`relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 shrink-0 aspect-square transition-transform group-hover/kael:scale-105 ${
+              !isTalking && direction === 'left' ? '-scale-x-100' : 'scale-x-100'
+            }`}
+          >
+            {/* Idle Front (Talking state) */}
             <img
-              src={getSpriteImage()}
-              alt="Kael Walking Sprite"
-              className="w-24 h-24 sm:w-28 sm:h-28 pixelated transform transition-transform group-hover/kael:scale-105"
-              style={{
-                imageRendering: 'pixelated',
-              }}
+              src={SPRITES.idleFront}
+              alt="Kael Idle Front"
+              className={`absolute inset-0 w-full h-full object-contain pixelated select-none pointer-events-none transition-opacity duration-0 ${
+                isTalking ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ imageRendering: 'pixelated' }}
+            />
+            {/* Idle Right (Paused state or Neutral walk step 1 & 3) */}
+            <img
+              src={SPRITES.idleRight}
+              alt="Kael Idle Right"
+              className={`absolute inset-0 w-full h-full object-contain pixelated select-none pointer-events-none transition-opacity duration-0 ${
+                !isTalking && (!isWalking || stepIndex === 1 || stepIndex === 3) ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ imageRendering: 'pixelated' }}
+            />
+            {/* Walk Step 1 (stepIndex 0) */}
+            <img
+              src={SPRITES.walkR1}
+              alt="Kael Walk 1"
+              className={`absolute inset-0 w-full h-full object-contain pixelated select-none pointer-events-none transition-opacity duration-0 ${
+                !isTalking && isWalking && stepIndex === 0 ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ imageRendering: 'pixelated' }}
+            />
+            {/* Walk Step 2 (stepIndex 2) */}
+            <img
+              src={SPRITES.walkR2}
+              alt="Kael Walk 2"
+              className={`absolute inset-0 w-full h-full object-contain pixelated select-none pointer-events-none transition-opacity duration-0 ${
+                !isTalking && isWalking && stepIndex === 2 ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ imageRendering: 'pixelated' }}
             />
           </div>
         </div>
